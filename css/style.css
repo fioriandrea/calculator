@@ -1,6 +1,46 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calc-container {
+  display: grid;
+  grid-template-rows: 2fr 5fr;
+  width: 20em;
+  height: 32em;
+  grid-gap: 1em;
+
+  border: 0.1em solid black;
+  border-radius: 1em;
+  padding: 1em;
+
+  background-color: #03a9f445;
+}
+
+#display {
+  border: 0.1em solid black;
+  border-radius: 1em;
+  background-color: #0cbd0c75;
+}
+
+#buttons {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.3em;
+    grid-template-areas:
+    "null null ac canc"
+    "num7 num8 num9 division"
+    "num4 num5 num6 multiply"
+    "num1 num2 num3 minus"
+    "num0 dot equals plus"; /**/
+}
+
 #buttons button {
   font-weight: bold;
   text-transform: uppercase;
+  border-radius: 1em;
 }
 
 .number {
