@@ -2,6 +2,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  background: #aaa;
+  border-radius: 1em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 1em;
 }
 
 #calc-container {
@@ -20,8 +31,21 @@ body {
 
 #display {
   border: 0.1em solid black;
-  border-radius: 1em;
+  border-radius: 0.5em;
   background-color: #0cbd0c75;
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+#display-text {
+  font-weight: bold;
+  font-size: 2em;
 }
 
 #buttons {
