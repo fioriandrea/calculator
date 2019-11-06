@@ -1,7 +1,4 @@
 let displayValue = "";
-/*let currentNum = "";
-let onDot = false;
-let onOperator = false;*/
 
 const operations = new Map();
 operations.set("+", (x, y) => x + y);
@@ -37,6 +34,10 @@ function onDivide() {
   return onCharacter("/");
 }
 
+function onOperator() {
+  return onPlus() || onMinus() || onMultiply() || onDivide();
+}
+
 function onNumber() {
   let flag = false;
   for(let i = 0; i <= 9; ++i) {
@@ -51,7 +52,48 @@ function placeButtons() {
   buttons.forEach((el) => el.style["grid-area"] = el.id);
 }
 
-function setActionNumberButtons() {
+function beginningAllowedAction(button, symbol) {
+  button.addEventListener("click", (e) => {
+    if(!onOperator() && !onDot()) {
+      displayValue += symbol;
+    }
+  });
+}
+
+function beginningNotAllowedAction(button, symbol) {
+  button.addEventListener("click", (e) => {
+    if(!onOperator() && !onDot() && displayValue !== "") {
+      displayValue += symbol;
+    }
+  });
+}
+
+function setDotAction() {
+  const dot = document.querySelector("#dot");
+  beginningNotAllowedAction(dot, ".");
+}
+
+function setPlusAction() {
+  const plus = document.querySelector("#plus");
+  beginningAllowedAction(plus, "+");
+}
+
+function setMinusAction() {
+  const minus = document.querySelector("#minus");
+  beginningAllowedAction(minus, "-");
+}
+
+function setMultiplyAction() {
+  const multiply = document.querySelector("#multiply");
+  beginningNotAllowedAction(multiply, "*");
+}
+
+function setDivideAction() {
+  const divide = document.querySelector("#division");
+  beginningNotAllowedAction(divide, "/");
+}
+
+function setNumberAction() {
   const buttons = Array.from(document.querySelectorAll(".number"));
   const display = document.querySelector("#display-text");
 
@@ -88,9 +130,14 @@ function setUpdateScreenWhenButtonPressedAction() {
 }
 
 function main() {
-  setActionNumberButtons();
+  setNumberAction();
   setACAction();
   setCancAction();
+  setDotAction();
+  setPlusAction();
+  setMinusAction();
+  setDivideAction();
+  setMultiplyAction();
   setUpdateScreenWhenButtonPressedAction();
   placeButtons();
 }
