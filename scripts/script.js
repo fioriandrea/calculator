@@ -1,3 +1,5 @@
+/*parser logic*/
+
 const operations = new Map();
 operations.set("+", (x, y) => x + y);
 operations.set("*", (x, y) => x * y);
@@ -76,12 +78,9 @@ function compute(expr) {
 }
 
 
-
-
-
+/*main logic*/
 
 let displayValue = "";
-let computed = false;
 
 function onCharacter(c) {
   return displayValue.length > 0 ? displayValue[displayValue.length - 1] === c : false;
@@ -192,32 +191,28 @@ function setCancAction() {
 }
 
 function setUpdateScreenWhenButtonPressedAction() {
-  const buttons = Array.from(document.querySelectorAll("#buttons button"));
+  const buttons = Array.from(document.querySelectorAll("#buttons button:not(#equals)"));
   const display = document.querySelector("#display-text");
 
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
       display.textContent = displayValue;
-
-      if(computed) {
-        displayValue = "";
-        computed = false;
-      }
     });
   });
 }
 
 function setEqualAction() {
   const equal = document.querySelector("#equals");
+  const display = document.querySelector("#display-text");
 
   equals.addEventListener("click", (e) => {
-    computed = true;
     if(!isValid(displayValue)) {
-      displayValue = "Error";
+      display.textContent = "Error";
     }
     else {
-      displayValue = parseFloat(compute(displayValue)).toFixed(3);
+      display.textContent = parseFloat(compute(displayValue)).toFixed(3);
     }
+    displayValue = "";
   });
 }
 
