@@ -21,7 +21,7 @@ body {
   display: grid;
   grid-template-rows: 2fr 5fr;
   width: 40em;
-  height: 90vh;
+  height: 80vh;
   grid-gap: 1em;
 
   border: 0.1em solid black;
@@ -33,7 +33,7 @@ body {
 
 @media only screen and (max-width: 670px) {
   #calc-container {
-    width: 90vw;
+    width: 80vw;
   }
 }
 
