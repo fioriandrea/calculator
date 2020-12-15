@@ -21,7 +21,7 @@ body {
   display: grid;
   grid-template-rows: 2fr 5fr;
   width: 40em;
-  height: 80vh;
+  height: 90vh;
   grid-gap: 1em;
 
   border: 0.1em solid black;
